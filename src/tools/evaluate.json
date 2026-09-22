@@ -1,0 +1,48 @@
+{
+  "name": "evaluate",
+  "description": "Evaluate content against one or more typed questions using TypeSafe's System One API (model 'jev'). Supports three question primitives that can be mixed in a single call: noul (yes/no, returns a probability 0-1), choice (select the best-fitting option from a fixed set), and score (rate against a rubric with 2-10 levels). All questions in a call are answered in parallel against the same input.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "state": {
+        "description": "The content to evaluate. A plain string for text, or a structured object/array to evaluate as JSON.",
+        "oneOf": [
+          { "type": "string" },
+          { "type": "object" },
+          { "type": "array" }
+        ]
+      },
+      "model": {
+        "type": "string",
+        "description": "Model identifier to use for evaluation, e.g. \"jev-latest\"."
+      },
+      "questions": {
+        "type": "object",
+        "description": "Map of question id to question definition. Each key becomes the corresponding answer's key in the response. At least one question is required.",
+        "minProperties": 1,
+        "additionalProperties": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["noul", "choice", "score"],
+              "description": "The question primitive: 'noul' for yes/no, 'choice' for categorical selection, 'score' for rubric-based rating."
+            },
+            "instructions": {
+              "type": "string",
+              "description": "The question to ask, in natural language."
+            },
+            "criteria": {
+              "description": "Question-type-specific criteria. For 'noul': optional object with 'true'/'false' descriptions. For 'choice': required object mapping option name to description (max 255 options). For 'score': required array of 2-10 rubric level descriptions.",
+              "type": ["object", "array"]
+            }
+          },
+          "required": ["type", "instructions"],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": ["state", "model", "questions"],
+    "additionalProperties": false
+  }
+}
