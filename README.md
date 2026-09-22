@@ -1,4 +1,4 @@
-# typesafe-mcp
+# system-one-mcp
 
 Local stdio MCP server exposing [TypeSafe's System One API](https://docs.typesafe.ai/introduction) as an MCP tool, for Claude Code and other MCP agents. No install step required -- run it with `npx`.
 
@@ -16,7 +16,7 @@ The downstream API answers one or more typed questions about a piece of content 
 2. Run it with your key in the environment:
 
    ```bash
-   TYPESAFE_API_KEY=your-key npx typesafe-mcp
+   TYPESAFE_API_KEY=your-key npx system-one-mcp
    ```
 
    The process exits immediately with an error if no backend can be configured.
@@ -28,7 +28,7 @@ The downstream API answers one or more typed questions about a piece of content 
   "mcpServers": {
     "typesafe": {
       "command": "npx",
-      "args": ["-y", "typesafe-mcp"],
+      "args": ["-y", "system-one-mcp"],
       "env": {
         "TYPESAFE_API_KEY": "your-typesafe-api-key"
       }
@@ -52,7 +52,7 @@ Set `JEV_BACKEND` (`typesafe` \| `openrouter` \| `vercel`) to force a specific b
 Already using `OPENROUTER_API_KEY`, `AI_GATEWAY_API_KEY`, or `TYPESAFE_API_KEY` for something else in the same environment? Point this server at a different variable instead of renaming yours, by setting `<VAR>_ENV` to that variable's name:
 
 ```bash
-OPENROUTER_API_KEY_ENV=MY_JEV_OPENROUTER_KEY MY_JEV_OPENROUTER_KEY=sk-... npx typesafe-mcp
+OPENROUTER_API_KEY_ENV=MY_JEV_OPENROUTER_KEY MY_JEV_OPENROUTER_KEY=sk-... npx system-one-mcp
 ```
 
 This works the same way for all three credentialed backends (`TYPESAFE_API_KEY_ENV`, `OPENROUTER_API_KEY_ENV`, `AI_GATEWAY_API_KEY_ENV`).

@@ -1,13 +1,30 @@
 {
-  "name": "typesafe-mcp",
+  "name": "system-one-mcp",
   "version": "0.1.0",
   "description": "Local stdio MCP server exposing TypeSafe's System One API as MCP tools, for Claude Code / agent configs.",
   "type": "module",
   "bin": {
-    "typesafe-mcp": "dist/index.js"
+    "system-one-mcp": "dist/index.js"
   },
   "files": [
     "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nirvana124/typesafe-mcp.git"
+  },
+  "homepage": "https://github.com/nirvana124/typesafe-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/nirvana124/typesafe-mcp/issues"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "mcp-server",
+    "typesafe",
+    "jev",
+    "system-one",
+    "ai-agent"
   ],
   "scripts": {
     "build": "tsup",

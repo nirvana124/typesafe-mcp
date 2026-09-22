@@ -29,11 +29,11 @@ loadEnv({ quiet: true });
 function failFastIfNoBackend(): void {
   try {
     const backend = getBackend();
-    process.stderr.write(`typesafe-mcp: using backend "${backend.name}"\n`);
+    process.stderr.write(`system-one-mcp: using backend "${backend.name}"\n`);
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
     process.stderr.write(
-      `typesafe-mcp: ${message}\n` +
+      `system-one-mcp: ${message}\n` +
         `See the package README for supported backends and the Claude Code / agent config snippet.\n`
     );
     process.exit(1);
@@ -45,7 +45,7 @@ async function main(): Promise<void> {
 
   const tools = allTools();
   const server = new Server(
-    { name: "typesafe-mcp", version: "0.1.0" },
+    { name: "system-one-mcp", version: "0.1.0" },
     { capabilities: { tools: {} } }
   );
 
@@ -83,6 +83,6 @@ async function main(): Promise<void> {
 }
 
 main().catch((err) => {
-  process.stderr.write(`typesafe-mcp: fatal error: ${err instanceof Error ? err.message : String(err)}\n`);
+  process.stderr.write(`system-one-mcp: fatal error: ${err instanceof Error ? err.message : String(err)}\n`);
   process.exit(1);
 });
